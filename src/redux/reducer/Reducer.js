@@ -14,6 +14,7 @@ export default function reducer(state = initialState, action) {
       };
     case GET_SINGLE_SHOW:
       return { ...state, show: action.payload };
+
     default:
       return state;
   }
