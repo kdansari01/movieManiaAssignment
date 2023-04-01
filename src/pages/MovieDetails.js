@@ -1,8 +1,12 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "./movieDetails.css";
 import { useDispatch, useSelector } from "react-redux";
 import { getById } from "../redux/action/action";
 import { useParams } from "react-router-dom";
+import { BookTicket } from "../component/Modal";
+import Button from "react-bootstrap/Button";
+import Modal from "react-bootstrap/Modal";
+import { Tosted } from "../utils/Tosted";
 
 const MovieDetails = () => {
   const { showId } = useParams();
@@ -12,25 +16,73 @@ const MovieDetails = () => {
   useEffect(() => {
     dispatch(getById(showId));
   }, [showId]);
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
+  const handleSubmit = () => {
+    Tosted("Ticket Book Successfully");
+    setShow(false);
+  };
+
   return (
-    <div>
+    <div className="">
       <div className="movie-card">
         <div className="container">
-          <a href="#">
-            <img src={shows.image.medium} alt="cover" className="cover" />
-          </a>
+          {/* <a href="#"> */}
+          <img src={shows.image.medium} alt="cover" className="cover" />
+          {/* </a> */}
 
           <div
             className="hero"
             style={{
               backgroundImage: `url(${shows.image.original})`,
               backgroundSize: "cover",
+              position: "relative",
             }}
           >
-            {/* <image
-              src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/hobbit_cover.jpg"
-              alt=",,"
-            /> */}
+            <div
+              style={{
+                position: "absolute",
+                right: "46px",
+                bottom: "28px",
+              }}
+            >
+              <Button
+                className="btn btn-primary fw-bold "
+                style={{ width: "9rem", height: "3rem" }}
+                onClick={handleShow}
+              >
+                Book Ticket
+              </Button>
+
+              <Modal
+                show={show}
+                onHide={handleClose}
+                backdrop="static"
+                keyboard={false}
+              >
+                <Modal.Header closeButton>
+                  <Modal.Title>Book your Ticket</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                  <div className="d-flex">
+                    <img
+                      src={shows.image.medium}
+                      style={{ width: "150px", height: "auto" }}
+                      alt="movie"
+                    />
+                    <h3 className="ps-4 fw-bold">Movie: {shows.name}</h3>
+                  </div>
+                </Modal.Body>
+                <Modal.Footer>
+                  <Button variant="primary" onClick={handleSubmit}>
+                    Submit
+                  </Button>
+                </Modal.Footer>
+              </Modal>
+            </div>
             <div className="details">
               <div className="title1">{shows.name}</div>
 
@@ -65,9 +117,6 @@ const MovieDetails = () => {
                 }}
               />
             </div>
-          </div>
-          <div className="d-flex justify-content-end">
-            <button className="btn btn-success">book</button>
           </div>
         </div>
       </div>
