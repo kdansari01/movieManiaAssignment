@@ -14,7 +14,7 @@ export const getShows = () => async (dispatch) => {
   }
 };
 
-export const getById = (id) => async (dispatch) => {
+export const getById = (id, navigate) => async (dispatch) => {
   try {
     const response = await axios.get(`https://api.tvmaze.com/shows/${id}`);
     dispatch({
@@ -22,6 +22,7 @@ export const getById = (id) => async (dispatch) => {
       payload: response.data,
     });
   } catch (error) {
+    navigate("/");
     console.log(error);
   }
 };
