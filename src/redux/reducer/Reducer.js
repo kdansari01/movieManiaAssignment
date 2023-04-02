@@ -1,7 +1,7 @@
 import { GET_SHOWS, GET_SINGLE_SHOW } from "../types/types";
 
 const initialState = {
-  AllShows: [],
+  shows: [],
   show: {},
 };
 
@@ -10,7 +10,7 @@ export default function reducer(state = initialState, action) {
     case GET_SHOWS:
       return {
         ...state,
-        AllShows: action.payload,
+        shows: action.payload,
       };
     case GET_SINGLE_SHOW:
       return { ...state, show: action.payload };
