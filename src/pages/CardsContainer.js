@@ -11,7 +11,7 @@ function CardsContainer() {
   console.log("shows=>", shows);
   useEffect(() => {
     dispatch(getShows());
-  }, []);
+  }, [dispatch]);
   return (
     <div>
       {shows.map(({ show }) => (

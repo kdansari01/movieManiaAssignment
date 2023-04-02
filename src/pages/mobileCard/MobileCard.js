@@ -24,7 +24,7 @@ const MobileCard = () => {
   console.log("shows=>", shows);
   useEffect(() => {
     dispatch(getById(showId));
-  }, [showId]);
+  }, [showId, dispatch]);
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
