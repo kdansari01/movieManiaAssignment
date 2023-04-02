@@ -6,7 +6,8 @@ import { useParams } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { Tosted } from "../utils/Tosted";
-import { decrement, increment, priceInc } from "../redux/action/ticket.action";
+import { decrement, increment } from "../redux/action/ticket.action";
+import MobileCard from "./mobileCard/MobileCard";
 
 const MovieDetails = () => {
   const count = useSelector((state) => state.TicketShow);
@@ -38,7 +39,7 @@ const MovieDetails = () => {
   return (
     <div className="">
       <div className="movie-card">
-        <div className="container">
+        <div className="containers">
           <img src={shows.image.medium} alt="cover" className="cover" />
 
           <div
@@ -52,16 +53,24 @@ const MovieDetails = () => {
             <div
               style={{
                 position: "absolute",
-                right: "46px",
-                bottom: "28px",
+                right: "10rem",
+                top: "2rem",
+                fontWeight: "bold",
               }}
             >
+              <h2>Schedule</h2>
+              <div className="d-flex justify-content-between">
+                <p>{shows.schedule.days} :</p>
+                <p>{shows.schedule.time}</p>
+              </div>
+            </div>
+            <div className="bookTicket">
               <Button
                 className="btn btn-primary fw-bold "
                 style={{ width: "9rem", height: "3rem" }}
                 onClick={handleShow}
               >
-                Book Ticket
+                <span className="text-white"> Book Ticket</span>
               </Button>
 
               <Modal
@@ -122,8 +131,13 @@ const MovieDetails = () => {
                   </div>
                 </Modal.Body>
                 <Modal.Footer>
-                  <Button variant="primary" onClick={handleSubmit}>
-                    Submit
+                  <Button
+                    variant="primary"
+                    className="text-white"
+                    onClick={handleSubmit}
+                    disabled={count.TotalTicket === 0}
+                  >
+                    <span className="text-white fw-bold"> Book Ticket</span>
                   </Button>
                 </Modal.Footer>
               </Modal>
@@ -164,6 +178,9 @@ const MovieDetails = () => {
             </div>
           </div>
         </div>
+      </div>
+      <div className="mobileCard">
+        <MobileCard />
       </div>
     </div>
   );

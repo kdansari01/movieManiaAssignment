@@ -6,20 +6,24 @@ a {
 a:hover {
   text-decoration: underline;
 }
+.bookTicket {
+  position: absolute;
+  right: 46px;
+  bottom: 28px;
+}
 
 .movie-card {
   font: 14px/22px "Lato", Arial, sans-serif;
   color: #a9a8a3;
   padding: 40px 0;
-  width: 100vw;
+  width: auto;
   height: 100vh;
+  display: flex;
+  justify-content: center;
 }
 
-.container {
-  /* margin: 0 auto;
-  width: 780px;
-  height: 640px;
-  background: #f0f0ed; */
+.containers {
+  width: 100%;
   border-radius: 5px;
   position: relative;
 }
@@ -246,4 +250,20 @@ a[data-tooltip][data-placement="top"]::after {
   bottom: 50px;
   left: 20px;
   margin-bottom: 4px;
+}
+@media screen and (min-width: 100px) and (max-width: 600px) {
+  .movie-card {
+    display: none;
+  }
+  .mobileCard {
+    display: block;
+  }
+}
+@media screen and (min-width: 601px) and (max-width: 1400px) {
+  .movie-card {
+    display: block;
+  }
+  .mobileCard {
+    display: none;
+  }
 }

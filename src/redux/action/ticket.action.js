@@ -1,4 +1,4 @@
-import { DECREMENT, INCREMENT, TICKET_PRICE } from "../types/types";
+import { DECREMENT, INCREMENT } from "../types/types";
 
 export const increment = () => ({
   type: INCREMENT,
